@@ -12,7 +12,8 @@ async function bootstrap() {
   const config = app.get(ConfigService);
 
   const port = config.get<number>('port') || 3000;
-  const frontendUrl = config.get<string>('frontendUrl') || 'http://localhost:3001';
+  const frontendUrl =
+    config.get<string>('frontendUrl') || 'http://localhost:3001';
 
   // ─── Security: Helmet with Content Security Policy ─────────────────────────
   app.use(
@@ -35,7 +36,11 @@ async function bootstrap() {
 
   // ─── CORS ──────────────────────────────────────────────────────────────────
   app.enableCors({
-    origin: [frontendUrl, 'http://localhost:5173'],
+    origin: [
+      frontendUrl,
+      'http://localhost:5173',
+      'https://agri-smart-frontend-six.vercel.app',
+    ],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept-Language'],
     credentials: true,
@@ -85,7 +90,11 @@ Events: \`sendMessage\`, \`receiveMessage\`, \`joinRoom\`, \`leaveRoom\`, \`typi
       `,
     )
     .setVersion('1.0')
-    .setContact('AgriSmart Team', 'https://agrismart.rw', 'support@agrismart.rw')
+    .setContact(
+      'AgriSmart Team',
+      'https://agrismart.rw',
+      'support@agrismart.rw',
+    )
     .setLicense('MIT', 'https://opensource.org/licenses/MIT')
     .addBearerAuth()
     .addTag('Auth', 'Registration, login, and profile endpoints')
