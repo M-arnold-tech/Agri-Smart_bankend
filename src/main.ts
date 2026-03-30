@@ -34,7 +34,7 @@ async function bootstrap() {
     }),
   );
 
-  // ─── CORS ──────────────────────────────────────────────────────────────────
+  // CORS 
   app.enableCors({
     origin: [
       frontendUrl,
@@ -46,7 +46,7 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // ─── Global Pipes ──────────────────────────────────────────────────────────
+  // Global Pipes 
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -56,19 +56,19 @@ async function bootstrap() {
     }),
   );
 
-  // ─── Global Filters & Interceptors ─────────────────────────────────────────
+  // Global Filters & Interceptors 
   app.useGlobalFilters(new GlobalExceptionFilter());
   app.useGlobalInterceptors(
     new TransformInterceptor(),
     new ClassSerializerInterceptor(app.get(Reflector)),
   );
 
-  // ─── API Prefix ────────────────────────────────────────────────────────────
+  // API Prefix 
   app.setGlobalPrefix('api/v1', { exclude: ['/'] });
 
-  // ─── Swagger Documentation ─────────────────────────────────────────────────
+  // Swagger Documentation 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('🌱 AgriSmart API')
+    .setTitle(' AgriSmart API')
     .setDescription(
       `
 **AgriSmart** — Rwanda's Agricultural Advisory Platform
@@ -126,12 +126,12 @@ Events: \`sendMessage\`, \`receiveMessage\`, \`joinRoom\`, \`leaveRoom\`, \`typi
 
   await app.listen(port);
   console.log(`
-  🌱 ─────────────────────────────────────────────
+   ─────────────────────────────────────────────
      AgriSmart API is running!
   ─────────────────────────────────────────────────
-     🚀  App:     http://localhost:${port}/api/v1
-     📚  Docs:    http://localhost:${port}/api/docs
-     🌍  Env:     ${config.get('nodeEnv')}
+       App:     http://localhost:${port}/api/v1
+       Docs:    http://localhost:${port}/api/docs
+       Env:     ${config.get('nodeEnv')}
   ─────────────────────────────────────────────────
   `);
 }
