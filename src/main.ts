@@ -15,7 +15,7 @@ async function bootstrap() {
   const frontendUrl =
     config.get<string>('frontendUrl') || 'http://localhost:3001';
 
-  // ─── Security: Helmet with Content Security Policy ─────────────────────────
+  // Security: Helmet with Content Security Policy
   app.use(
     (helmet as any).default({
       contentSecurityPolicy: {
@@ -34,7 +34,7 @@ async function bootstrap() {
     }),
   );
 
-  // CORS 
+  // CORS
   app.enableCors({
     origin: [
       frontendUrl,
@@ -46,7 +46,7 @@ async function bootstrap() {
     credentials: true,
   });
 
-  // Global Pipes 
+  // Global Pipes
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -56,17 +56,17 @@ async function bootstrap() {
     }),
   );
 
-  // Global Filters & Interceptors 
+  // Global Filters & Interceptors
   app.useGlobalFilters(new GlobalExceptionFilter());
   app.useGlobalInterceptors(
     new TransformInterceptor(),
     new ClassSerializerInterceptor(app.get(Reflector)),
   );
 
-  // API Prefix 
+  // API Prefix
   app.setGlobalPrefix('api/v1', { exclude: ['/'] });
 
-  // Swagger Documentation 
+  // Swagger Documentation
   const swaggerConfig = new DocumentBuilder()
     .setTitle(' AgriSmart API')
     .setDescription(
@@ -120,19 +120,19 @@ Events: \`sendMessage\`, \`receiveMessage\`, \`joinRoom\`, \`leaveRoom\`, \`typi
     customCss: `
       .swagger-ui .topbar { background: linear-gradient(135deg, #2d6a4f, #40916c); }
       .swagger-ui .topbar-wrapper img { content: url(''); }
-      .swagger-ui .topbar-wrapper::before { content: '🌱 AgriSmart API'; color: white; font-size: 20px; font-weight: bold; }
+      .swagger-ui .topbar-wrapper::before { content: ' AgriSmart API'; color: white; font-size: 20px; font-weight: bold; }
     `,
   });
 
   await app.listen(port);
   console.log(`
-   ─────────────────────────────────────────────
+   
      AgriSmart API is running!
-  ─────────────────────────────────────────────────
+  
        App:     http://localhost:${port}/api/v1
        Docs:    http://localhost:${port}/api/docs
        Env:     ${config.get('nodeEnv')}
-  ─────────────────────────────────────────────────
+  
   `);
 }
 bootstrap();

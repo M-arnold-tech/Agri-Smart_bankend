@@ -35,7 +35,9 @@ export class SeederService implements OnApplicationBootstrap {
 
     const existing = await this.usersRepo.findOne({ where: { email } });
     if (existing) {
-      this.logger.log(`Admin account already exists: ${email}`);
+      existing.password = await bcrypt.hash(password, 12);
+      await this.usersRepo.save(existing);
+      this.logger.log(`Admin account already exists: ${email}. Password synchronized with .env.`);
       return;
     }
 
