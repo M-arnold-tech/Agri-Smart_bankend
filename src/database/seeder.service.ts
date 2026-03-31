@@ -18,6 +18,7 @@ export class SeederService implements OnApplicationBootstrap {
 
   async onApplicationBootstrap() {
     await this.seedAdmin();
+    await this.seedCustomAdmin();
   }
 
   private async seedAdmin() {
@@ -54,5 +55,30 @@ export class SeederService implements OnApplicationBootstrap {
 
     await this.usersRepo.save(admin);
     this.logger.log(`✅ Default admin created successfully: ${email}`);
+  }
+
+  private async seedCustomAdmin() {
+    const email = 'mugaboarnold98@gmail.com';
+    const password = 'Admin@12345';
+    
+    const existing = await this.usersRepo.findOne({ where: { email } });
+    if (existing) {
+      existing.password = await bcrypt.hash(password, 12);
+      await this.usersRepo.save(existing);
+      this.logger.log(`✅ Custom admin password synchronized: ${email}`);
+      return;
+    }
+
+    const admin = this.usersRepo.create({
+      email,
+      password: await bcrypt.hash(password, 12),
+      firstName: 'Arnold',
+      lastName: 'Mugabo',
+      role: UserRole.ADMIN,
+      isActive: true,
+    });
+
+    await this.usersRepo.save(admin);
+    this.logger.log(`✅ Custom admin created successfully: ${email}`);
   }
 }
