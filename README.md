@@ -1,4 +1,4 @@
-# 🌱 AgriSmart — Agricultural Advisory Platform (Backend)
+#  AgriSmart — Agricultural Advisory Platform (Backend)
 
 > **Connecting Rwandan farmers with certified agricultural advisors to increase yields and improve livelihoods.**
 
@@ -30,26 +30,26 @@ AgriSmart is a full-stack agricultural advisory platform built for Rwanda. This 
 
 ---
 
-## ✨ Features
+##  Features
 
 | Feature | Description |
 |---|---|
-| 🔐 **JWT Authentication** | Secure login/register with role-based access control (RBAC) |
-| 👤 **Three User Roles** | ADMIN, ADVISOR, FARMER — each with dedicated dashboards and permissions |
-| 💬 **Real-Time Chat** | 1-on-1 and group messaging via WebSockets (Socket.IO) |
-| 🌤 **Live Weather** | District-level weather data and farming recommendations (Open-Meteo API) |
-| 💹 **Market Prices** | Real-time crop price data from UNOCHA HAPI |
-| 📚 **Knowledge Base** | Advisors upload guides/resources (PDFs, images) via Supabase Storage |
-| 📅 **Crop Calendar** | Advisors assign crop task schedules to farmers |
-| 👥 **Groups & Cooperatives** | Farmers join regional cooperatives for group messaging and coordination |
-| 🤖 **Auto-Seeding** | Default admin account is automatically created on first startup |
-| 🌍 **i18n** | Multi-language support (English & Kinyarwanda) |
-| 📖 **Swagger UI** | Interactive API documentation available out of the box |
-| 🛡 **Security** | Helmet.js, CSP headers, CORS, input validation, bcrypt password hashing |
+|  **JWT Authentication** | Secure login/register with role-based access control (RBAC) |
+|  **Three User Roles** | ADMIN, ADVISOR, FARMER — each with dedicated dashboards and permissions |
+|  **Real-Time Chat** | 1-on-1 and group messaging via WebSockets (Socket.IO) |
+|  **Live Weather** | District-level weather data and farming recommendations (Open-Meteo API) |
+|  **Market Prices** | Real-time crop price data from UNOCHA HAPI |
+|  **Knowledge Base** | Advisors upload guides/resources (PDFs, images) via Supabase Storage |
+|  **Crop Calendar** | Advisors assign crop task schedules to farmers |
+|  **Groups & Cooperatives** | Farmers join regional cooperatives for group messaging and coordination |
+|  **Auto-Seeding** | Default admin account is automatically created on first startup |
+|  **i18n** | Multi-language support (English & Kinyarwanda) |
+|  **Swagger UI** | Interactive API documentation available out of the box |
+|  **Security** | Helmet.js, CSP headers, CORS, input validation, bcrypt password hashing |
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -66,7 +66,7 @@ AgriSmart is a full-stack agricultural advisory platform built for Rwanda. This 
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 src/
@@ -92,7 +92,7 @@ src/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -195,7 +195,7 @@ Once started, you will see:
 
 ---
 
-## 🔑 Default Seeded Users & Credentials
+## Default Seeded Users & Credentials
 
 The seeder runs **automatically on every startup** (via `OnApplicationBootstrap`). If the admin account does not yet exist in the database, it will be created immediately.
 
@@ -254,7 +254,7 @@ Authorization: Bearer <your_jwt_token>
 
 ### Endpoints by Module
 
-#### 🔐 Auth (`/api/v1/auth`)
+####  Auth (`/api/v1/auth`)
 
 | Method | Endpoint | Description | Auth |
 |---|---|---|---|
@@ -288,7 +288,7 @@ Authorization: Bearer <your_jwt_token>
 
 ---
 
-#### 🌾 Farmer (`/api/v1/farmer`) — `FARMER` only
+#### Farmer (`/api/v1/farmer`) — `FARMER` only
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -298,7 +298,7 @@ Authorization: Bearer <your_jwt_token>
 
 ---
 
-#### 🧑‍🌾 Advisor (`/api/v1/advisor`) — `ADVISOR` only
+#### Advisor (`/api/v1/advisor`) — `ADVISOR` only
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -319,7 +319,7 @@ Authorization: Bearer <your_jwt_token>
 
 ---
 
-#### 👥 Groups & Cooperatives (`/api/v1/groups`)
+#### Groups & Cooperatives (`/api/v1/groups`)
 
 | Method | Endpoint | Description | Auth |
 |---|---|---|---|
@@ -330,7 +330,7 @@ Authorization: Bearer <your_jwt_token>
 
 ---
 
-#### 📚 Knowledge Base (`/api/v1/knowledge-base`)
+#### Knowledge Base (`/api/v1/knowledge-base`)
 
 | Method | Endpoint | Description | Auth |
 |---|---|---|---|
@@ -339,7 +339,7 @@ Authorization: Bearer <your_jwt_token>
 
 ---
 
-#### 📅 Crop Calendar (`/api/v1/crop-calendar`)
+#### Crop Calendar (`/api/v1/crop-calendar`)
 
 Advisors create and assign crop task schedules for their farmers. Supports task creation, listing, and completion tracking.
 
@@ -355,7 +355,7 @@ Powered by [Open-Meteo](https://open-meteo.com/) — no API key required.
 
 ---
 
-#### 💹 Market Prices (`/api/v1/market-prices`)
+#### Market Prices (`/api/v1/market-prices`)
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -393,7 +393,7 @@ All responses are wrapped in a consistent envelope:
 
 ---
 
-## 🔌 WebSocket — Real-Time Chat
+## WebSocket — Real-Time Chat
 
 Connect to the WebSocket server at:
 
@@ -443,7 +443,7 @@ const socket = io('http://localhost:3000/chat', {
 
 ---
 
-## 🛡 Security
+##  Security
 
 - **Helmet.js** — HTTP security headers including Content Security Policy
 - **CORS** — Whitelist-based; configured for both Vite (`5173`) and Next.js (`3001`) frontends + production Vercel URL
@@ -454,7 +454,7 @@ const socket = io('http://localhost:3000/chat', {
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ```bash
 # Unit tests
@@ -472,7 +472,7 @@ npm run test:cov
 
 ---
 
-## 📜 Scripts Reference
+## Scripts Reference
 
 | Script | Command | Description |
 |---|---|---|
@@ -488,7 +488,7 @@ npm run test:cov
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License**.
 
