@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { DatabaseModule } from './database/database.module';
+import { SeederModule } from './database/seeder.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminModule } from './admin/admin.module';
 import { FarmerModule } from './farmer/farmer.module';
@@ -25,6 +26,7 @@ import { MailModule } from './mail/mail.module';
 
     // Database
     DatabaseModule,
+    SeederModule,
 
     // Mail (global)
     MailModule,

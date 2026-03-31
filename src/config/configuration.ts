@@ -49,4 +49,11 @@ export default () => ({
     defaultLanguage: process.env.DEFAULT_LANGUAGE || 'en',
     supportedLanguages: (process.env.SUPPORTED_LANGUAGES || 'en,rw').split(','),
   },
+
+  admin: {
+    email: process.env.ADMIN_EMAIL,
+    password: process.env.ADMIN_PASSWORD,
+    firstName: process.env.ADMIN_FIRST_NAME || 'System',
+    lastName: process.env.ADMIN_LAST_NAME || 'Admin',
+  },
 });

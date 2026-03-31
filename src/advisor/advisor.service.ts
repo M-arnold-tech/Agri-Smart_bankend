@@ -4,6 +4,8 @@ import { Repository } from 'typeorm';
 import { User } from '../users/user.entity';
 import { AdvisorProfile } from '../users/advisor-profile.entity';
 import { FarmerProfile } from '../users/farmer-profile.entity';
+import { Group } from '../groups/group.entity';
+import { Message } from '../chat/message.entity';
 import { UserRole } from '../common/decorators/roles.decorator';
 
 @Injectable()
@@ -15,7 +17,20 @@ export class AdvisorService {
     private advisorProfileRepo: Repository<AdvisorProfile>,
     @InjectRepository(FarmerProfile)
     private farmerProfileRepo: Repository<FarmerProfile>,
+    @InjectRepository(Group)
+    private groupRepo: Repository<Group>,
+    @InjectRepository(Message)
+    private messageRepo: Repository<Message>,
   ) {}
+
+  async getProfile(userId: string) {
+    const profile = await this.advisorProfileRepo.findOne({
+      where: { userId },
+      relations: ['user'],
+    });
+    if (!profile) throw new NotFoundException('Advisor profile not found');
+    return { data: profile };
+  }
 
   async getAssignedFarmers(advisorId: string) {
     const farmers = await this.farmerProfileRepo.find({
@@ -47,6 +62,18 @@ export class AdvisorService {
     const assignedFarmers = await this.farmerProfileRepo.count({
       where: { assignedAdvisorId: advisorId },
     });
-    return { data: { assignedFarmers } };
+    const totalGroups = await this.groupRepo.count({
+      where: { adminId: advisorId },
+    });
+    const unreadMessages = await this.messageRepo.count({
+      where: { receiverId: advisorId, isRead: false },
+    });
+    return { 
+      data: { 
+        assignedFarmers,
+        totalGroups,
+        unreadMessages,
+      } 
+    };
   }
 }

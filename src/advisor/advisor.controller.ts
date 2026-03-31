@@ -23,6 +23,12 @@ import { User } from '../users/user.entity';
 export class AdvisorController {
   constructor(private readonly advisorService: AdvisorService) {}
 
+  @Get('profile')
+  @ApiOperation({ summary: 'Get advisor profile' })
+  getProfile(@CurrentUser() user: User) {
+    return this.advisorService.getProfile(user.id);
+  }
+
   @Get('assigned-farmers')
   @ApiOperation({ summary: 'Get farmers assigned to this advisor' })
   getAssignedFarmers(@CurrentUser() user: User) {
